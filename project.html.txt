@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine 💖</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+font-family:sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+color:white;
+}
+
+h1{
+font-size:clamp(24px,6vw,40px);
+}
+
+.buttons{
+position:relative;
+width:300px;
+height:120px;
+margin-top:30px;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+}
+
+#yes{
+background:#ff4e50;
+color:white;
+}
+
+#no{
+background:white;
+color:#ff4e50;
+position:absolute;
+left:60%;
+}
+
+.balloon{
+position:absolute;
+bottom:-40px;
+font-size:24px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-110vh)}
+}
+</style>
+</head>
+
+<body>
+
+<h1>Will You Be My Valentine? 💕</h1>
+
+<div class="buttons">
+<button id="yes" onclick="love()">Yes 💖</button>
+<button id="no">No 💔</button>
+</div>
+
+<script>
+const no=document.getElementById("no");
+
+function move(){
+const x=Math.random()*(window.innerWidth-100);
+const y=Math.random()*(window.innerHeight-50);
+no.style.left=x+"px";
+no.style.top=y+"px";
+}
+
+no.addEventListener("mouseover",move);
+no.addEventListener("touchstart",function(e){
+e.preventDefault();
+move();
+});
+
+function love(){
+document.body.innerHTML="<h1>Yayyyy!!! 💖 You Made Me So Happy! 🥰✨</h1>";
+setInterval(()=>{
+const b=document.createElement("div");
+b.classList.add("balloon");
+b.innerHTML="🎈";
+b.style.left=Math.random()*window.innerWidth+"px";
+document.body.appendChild(b);
+setTimeout(()=>b.remove(),6000);
+},500);
+}
+</script>
+
+</body>
+</html>
